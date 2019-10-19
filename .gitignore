@@ -1,0 +1,5 @@
+# build files
+*.rpm
+
+# Ide files
+tags
