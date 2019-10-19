@@ -1,0 +1,58 @@
+targets=(
+    "fedora-30"
+)
+pkgname="st"
+pkgver="0.8.2"
+pkgrel="7"
+pkgdesc="is a simple terminal implementation for X."
+pkgdesclong=(
+    "is a simple terminal implementation for X"
+)
+maintainer="KalyuzhnyiDA"
+arch="all"
+license=("MIT")
+depends:fedora-30=("libXft")
+makedepends:fedora-30=(
+    "libXext-devel"
+    "ncurses-devel"
+    "libXft-devel"
+)
+url="https://st.suckless.org"
+section="utils"
+sources=(
+    "https://dl.suckless.org/${pkgname}/${pkgname}-${pkgver}.tar.gz"
+)
+hashsums=(
+    "aeb74e10aa11ed364e1bcc635a81a523119093e63befd2f231f8b0705b15bf35"
+)
+
+build() {
+    # Vars
+    makedir="${srcdir}/${pkgname}-${pkgver}"
+    makeopts="--directory=$makedir"
+
+    # Prepare
+    sed -r \
+        -e '/^[[:space:]]+tic\>/d' \
+        -e '/^[[:space:]]+@echo .* terminfo/d' \
+        -i "$makedir/Makefile"
+    cp "$makedir/config.def.h" "$makedir/config.h"
+
+    # Build
+    make "$makeopts" X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+}
+
+package() {
+    # Vars
+    makedir="${srcdir}/${pkgname}-${pkgver}"
+    makeopts="--directory=$makedir"
+    installopts='--mode 0644 -D --target-directory'
+    shrdir="${pkgdir}/usr/share"
+    licdir="$shdir/licenses/${pkgname}"
+    docdir="$shrdir/doc/${pkgname}"
+
+    # Install
+    make "$makeopts" PREFIX=/usr DESTDIR="${pkgdir}" install
+    install $installopts "$licdir" "$makedir/LICENSE"
+    install $installopts "$docdir" "$makedir/README"
+}
