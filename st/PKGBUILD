@@ -21,9 +21,11 @@ url="https://st.suckless.org"
 section="utils"
 sources=(
     "https://dl.suckless.org/${pkgname}/${pkgname}-${pkgver}.tar.gz"
+    "config.h.0.8.2.bac"
 )
 hashsums=(
     "aeb74e10aa11ed364e1bcc635a81a523119093e63befd2f231f8b0705b15bf35"
+    "1d2b745d8aa5b94053309e8068b07b4eeafb978465138fa7738c75a452b9c66f"
 )
 
 build() {
@@ -36,7 +38,7 @@ build() {
         -e '/^[[:space:]]+tic\>/d' \
         -e '/^[[:space:]]+@echo .* terminfo/d' \
         -i "$makedir/Makefile"
-    cp "$makedir/config.def.h" "$makedir/config.h"
+    cp "${srcdir}/config.h.0.8.2.bac" "$makedir/config.h"
 
     # Build
     make "$makeopts" X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
