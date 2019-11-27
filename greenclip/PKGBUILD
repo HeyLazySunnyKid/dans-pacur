@@ -1,0 +1,31 @@
+targets=(
+    "fedora-30"
+)
+pkgname="greenclip"
+pkgver="3.2"
+pkgrel="1"
+pkgdesc="recyle your clipboard selections"
+pkgdesclong=(
+    "Recyle your clipboard selections with greenclip and don't waste your time"
+    "anymore to reselect things over and over. Purpose: Keeps track of your "
+    "history of selections to quickly switch between them"
+)
+maintainer="HeyLazySunnyKid"
+arch="all"
+license=("BSD3")
+url="https://github.com/erebe/greenclip"
+section="utils"
+sources=(
+    "greenclip"
+)
+hashsums=(
+    "SKIP"
+)
+
+build() {
+}
+
+package() {
+    # Install
+    install -vDm 755 "greenclip" "${pkgdir}/usr/local/bin/greenclip"
+}
