@@ -8,7 +8,7 @@ pkgdesc="is a simple terminal implementation for X."
 pkgdesclong=(
     "is a simple terminal implementation for X"
 )
-maintainer="KalyuzhnyiDA"
+maintainer="HeyLazySunnyKid"
 arch="all"
 license=("MIT")
 depends:fedora-30=("libXft")

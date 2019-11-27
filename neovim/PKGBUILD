@@ -1,0 +1,42 @@
+targets=(
+    "fedora-30"
+)
+pkgname="neovim"
+pkgver="0.4.3"
+pkgrel="1"
+pkgdesc="Fork of Vim aiming to improve user experience, plugins, and GUIs."
+pkgdesclong=(
+    "Neovim is a refactor - and sometimes redactor - in the tradition"
+    "of Vim, which itself derives from Stevie. It is not a rewrite,"
+    "but a continuation and extension of Vim. Many rewrites, clones,"
+    "emulators and imitators exist; some are very clever, but none are"
+    "Vim. Neovim strives to be a superset of Vim, notwithstanding some"
+    "intentionally removed misfeatures; excepting those few and"
+    "carefully-considered excisions, Neovim is Vim. It is built for"
+    "users who want the good parts of Vim, without compromise, and"
+    "more."
+)
+maintainer="HeyLazySunnyKid"
+arch="all"
+license=("ASL 2.0")
+depends=(
+    "python3-neovim"
+    "xsel"
+)
+url="https://neovim.io"
+section="utils"
+sources=(
+    "nvim-linux64.tar.gz"
+)
+hashsums=(
+    "SKIP"
+)
+
+build() {
+}
+
+package() {
+    cd "${srcdir}/nvim-linux64"
+    find ./bin -type f -exec install -vDm 755 "{}" "${pkgdir}/usr/{}" \;
+    find ./share -type f -exec install -vDm 644 "{}" "${pkgdir}/usr/{}" \;
+}

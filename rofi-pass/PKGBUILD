@@ -1,0 +1,40 @@
+targets=(
+    "fedora-30"
+)
+pkgname="rofi-pass"
+pkgver="2.0.2"
+pkgrel="1"
+pkgdesc="rofi frontend for pass"
+pkgdesclong=(
+    "A bash script to handle Simple Password Store in a convenient way using "
+    "rofi."
+)
+maintainer="HeyLazySunnyKid"
+arch="all"
+license=("GNU GPL v3")
+depends=(
+    "pass"
+    "sed"
+    "rofi"
+    "xdotool"
+    "gawk"
+    "bash"
+    "pwgen"
+    "pass-otp"
+)
+url="https://github.com/carnager/rofi-pass"
+section="utils"
+sources=(
+    "rofi-pass-2.0.2.tar.gz"
+)
+hashsums=(
+    "SKIP"
+)
+
+build() {
+}
+
+package() {
+    cd "${srcdir}/rofi-pass-2.0.2"
+    make PREFIX="${pkgdir}/usr/local" install
+}
