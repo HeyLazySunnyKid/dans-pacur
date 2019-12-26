@@ -1,0 +1,47 @@
+targets=(
+    "fedora-30"
+)
+pkgname="xininfo"
+pkgver="0.14"
+pkgrel="1"
+pkgdesc="A simple screenshot/screencast tool written in bash"
+pkgdesclong=(
+    "A simple screenshot/screencast tool written in bash"
+)
+maintainer="HeyLazySunnyKid"
+arch="all"
+license=("GPL")
+depends=(
+    "ffmpeg"
+    "maim"
+    "slop"
+    "xclip"
+    "xininfo"
+    "rofi"
+    "diffutils"
+)
+optdepends=(
+    "openssh"
+    "copyq"
+    "libnotify"
+    "imgurbash2"
+    "fb-client"
+)
+url="https://github.com/DaveDavenport/xininfo"
+section="utils"
+sources=(
+    "teiler.tar.gz"
+)
+hashsums=(
+    "SKIP"
+)
+
+build() {
+}
+
+package() {
+    cd teiler
+    make DESTDIR="${pkgdir}/" \
+       PREFIX='/usr' \
+       install
+}
