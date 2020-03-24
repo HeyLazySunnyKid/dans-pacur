@@ -25,7 +25,7 @@ depends=(
 url="https://github.com/carnager/rofi-pass"
 section="utils"
 sources=(
-    "rofi-pass-2.0.2.tar.gz"
+    "rofi-pass.tar.gz"
 )
 hashsums=(
     "SKIP"

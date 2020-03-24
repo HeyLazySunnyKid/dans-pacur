@@ -2,7 +2,7 @@ targets=(
     "fedora-30"
 )
 pkgname="teiler"
-pkgver="19.5.2"
+pkgver="3.1.2"
 pkgrel="1"
 pkgdesc="A simple screenshot/screencast tool written in bash"
 pkgdesclong=(
@@ -40,7 +40,7 @@ build() {
 }
 
 package() {
-    cd teiler
+    cd teiler-${pkgver}
     make DESTDIR="${pkgdir}/" \
        PREFIX='/usr' \
        install

@@ -2,7 +2,7 @@ targets=(
     "fedora-30"
 )
 pkgname="xininfo"
-pkgver="0.14"
+pkgver="0.14.11"
 pkgrel="1"
 pkgdesc="Small helper program for monitor layouts."
 pkgdesclong=(
