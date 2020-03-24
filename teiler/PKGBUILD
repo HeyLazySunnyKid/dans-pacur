@@ -21,10 +21,10 @@ depends=(
     "diffutils"
 )
 optdepends=(
+    "imgurbash2"
     "openssh"
     "copyq"
     "libnotify"
-    "imgurbash2"
     "fb-client"
 )
 url="https://github.com/DaveDavenport/xininfo"
@@ -40,7 +40,7 @@ build() {
 }
 
 package() {
-    cd teiler-${pkgver}
+    cd teiler
     make DESTDIR="${pkgdir}/" \
        PREFIX='/usr' \
        install
