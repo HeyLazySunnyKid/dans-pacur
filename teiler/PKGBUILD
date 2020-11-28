@@ -1,5 +1,5 @@
 targets=(
-    "fedora-30"
+    "fedora-32"
 )
 pkgname="teiler"
 pkgver="3.1.2"
@@ -27,10 +27,10 @@ optdepends=(
     "libnotify"
     "fb-client"
 )
-url="https://github.com/DaveDavenport/xininfo"
+url="https://github.com/carnager/teiler"
 section="utils"
 sources=(
-    "teiler.tar.gz"
+    "${url}/archive/${pkgver}.tar.gz"
 )
 hashsums=(
     "SKIP"
@@ -40,7 +40,7 @@ build() {
 }
 
 package() {
-    cd teiler
+    cd "teiler-${pkgver}"
     make DESTDIR="${pkgdir}/" \
        PREFIX='/usr' \
        install

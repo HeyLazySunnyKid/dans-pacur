@@ -1,8 +1,8 @@
 targets=(
-    "fedora-30"
+    "fedora-32"
 )
 pkgname="xininfo"
-pkgver="0.14.11"
+pkgver="20161109.162939"
 pkgrel="1"
 pkgdesc="Small helper program for monitor layouts."
 pkgdesclong=(
@@ -11,31 +11,31 @@ pkgdesclong=(
 maintainer="HeyLazySunnyKid"
 arch="all"
 license=("GPL")
-depends:fedora-30=(
+depends=(
     "xcb-util-wm"
     "xcb-util"
 )
-makedepends:fedora-30=(
+makedepends=(
     "xcb-util-devel"
     "xcb-util-wm-devel"
 )
 url="https://github.com/DaveDavenport/xininfo"
 section="utils"
 sources=(
-    "xininfo.tar.gz"
+    "${url}/archive/master.zip"
 )
 hashsums=(
     "SKIP"
 )
 
 build() {
-    cd ${srcdir}/xininfo
+    cd "${srcdir}/xininfo-master"
     autoreconf --install
     CC=gcc ./configure --prefix=/usr
     make
 }
 
 package() {
-    cd "${srcdir}/xininfo"
+    cd "${srcdir}/xininfo-master"
     make install DESTDIR="${pkgdir}"
 }

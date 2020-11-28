@@ -1,8 +1,8 @@
 targets=(
-    "fedora-30"
+    "fedora-32"
 )
 pkgname="neovim"
-pkgver="0.4.3"
+pkgver="v0.4.4"
 pkgrel="1"
 pkgdesc="Fork of Vim aiming to improve user experience, plugins, and GUIs."
 pkgdesclong=(
@@ -26,7 +26,7 @@ depends=(
 url="https://neovim.io"
 section="utils"
 sources=(
-    "nvim-linux64.tar.gz"
+    "https://github.com/neovim/neovim/releases/download/${pkgver}/nvim-linux64.tar.gz"
 )
 hashsums=(
     "SKIP"

@@ -1,0 +1,37 @@
+[__config__]
+oldver = "versions"
+newver = "new_versions"
+
+[greenclip]
+source = "github"
+github = "erebe/greenclip"
+use_latest_release = true
+
+[imgurbash2]
+source = "github"
+github = "ram-on/imgurbash2"
+use_latest_release = true
+
+[neovim]
+source = "github"
+github = "neovim/neovim"
+use_latest_release = true
+
+[rofi-pass]
+source = "github"
+github = "carnager/rofi-pass"
+use_latest_release = true
+
+[st]
+source = "regex"
+url = "https://dl.suckless.org/st/"
+regex = "st-([0-9.]+).tar.gz"
+
+[teiler]
+source = "github"
+github = "carnager/teiler"
+use_latest_release = true
+
+[xininfo]
+source = "github"
+github = "DaveDavenport/xininfo"

@@ -1,8 +1,8 @@
 targets=(
-    "fedora-30"
+    "fedora-32"
 )
 pkgname="greenclip"
-pkgver="3.2"
+pkgver="3.3"
 pkgrel="1"
 pkgdesc="recyle your clipboard selections"
 pkgdesclong=(
@@ -16,7 +16,7 @@ license=("BSD3")
 url="https://github.com/erebe/greenclip"
 section="utils"
 sources=(
-    "greenclip"
+    "${url}/releases/download/${pkgver}/greenclip"
 )
 hashsums=(
     "SKIP"

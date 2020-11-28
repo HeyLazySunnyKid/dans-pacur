@@ -1,5 +1,5 @@
 targets=(
-    "fedora-30"
+    "fedora-32"
 )
 pkgname="rofi-pass"
 pkgver="2.0.2"
@@ -25,7 +25,7 @@ depends=(
 url="https://github.com/carnager/rofi-pass"
 section="utils"
 sources=(
-    "rofi-pass.tar.gz"
+    "${url}/archive/${pkgver}.tar.gz"
 )
 hashsums=(
     "SKIP"

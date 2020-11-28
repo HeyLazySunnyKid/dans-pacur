@@ -1,8 +1,8 @@
 targets=(
-    "fedora-30"
+    "fedora-32"
 )
 pkgname="imgurbash2"
-pkgver="3.1"
+pkgver="3.2"
 pkgrel="1"
 pkgdesc="imgurbash2 is a simple bash script that allows you to upload images to imgur"
 pkgdesclong=(
@@ -11,13 +11,13 @@ pkgdesclong=(
 maintainer="HeyLazySunnyKid"
 arch="all"
 license=("GPL")
-depends:fedora-30=(
+depends=(
     "xsel"
 )
-url="https://github.com/DaveDavenport/xininfo"
+url="https://github.com/ram-on/imgurbash2"
 section="utils"
 sources=(
-    "imgurbash2"
+    "${url}/archive/${pkgver}.tar.gz"
 )
 hashsums=(
     "SKIP"
@@ -27,5 +27,5 @@ build() {
 }
 
 package() {
-    install -vDm 755 "imgurbash2" "${pkgdir}/usr/local/bin/imgurbash2"
+    install -vDm 755 "imgurbash2-${pkgver}/imgurbash2" "${pkgdir}/usr/local/bin/imgurbash2"
 }
