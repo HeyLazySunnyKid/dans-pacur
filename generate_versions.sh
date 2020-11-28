@@ -19,14 +19,6 @@ function update(){
 
         if [ "$is_updated" = "updated" ]; then
             pkgold=$(echo "$line" | jq .old_version | tr -d \")
-            # if [ -f "./${pkg}/download.sh" ]; then
-            #     (
-            #         echo "Download $pkg"
-            #         cd "$pkg"
-            #         export PGKVER="$pkgver"
-            #         ./download.sh
-            #     )
-            # fi
             sed -i."__${pkgold}" "s/pkgver=.*/pkgver=\"${pkgver}\"/" "${pkg}/PKGBUILD"
             echo "$pkg updated to $pkgver"
         fi

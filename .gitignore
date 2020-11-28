@@ -1,7 +1,9 @@
 # build files
 *.rpm
 mirror
-
+PKGBUILD.*
+new_versions
+versions
 
 # Ide files
 tags
