@@ -30,8 +30,12 @@ regex = "st-([0-9.]+).tar.gz"
 [teiler]
 source = "github"
 github = "carnager/teiler"
-use_latest_release = true
 
 [xininfo]
 source = "github"
 github = "DaveDavenport/xininfo"
+
+[tmux]
+source = "github"
+github = "tmux/tmux"
+use_latest_release = true

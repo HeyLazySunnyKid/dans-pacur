@@ -2,7 +2,7 @@ targets=(
     "fedora-32"
 )
 pkgname="teiler"
-pkgver="3.1.2"
+pkgver="20190502.041427"
 pkgrel="1"
 pkgdesc="A simple screenshot/screencast tool written in bash"
 pkgdesclong=(
@@ -30,17 +30,18 @@ optdepends=(
 url="https://github.com/carnager/teiler"
 section="utils"
 sources=(
-    "${url}/archive/${pkgver}.tar.gz"
+    "https://codeload.github.com/carnager/teiler/zip/master"
 )
 hashsums=(
     "SKIP"
 )
 
 build() {
+    unzip master
 }
 
 package() {
-    cd "teiler-${pkgver}"
+    cd "teiler-master"
     make DESTDIR="${pkgdir}/" \
        PREFIX='/usr' \
        install

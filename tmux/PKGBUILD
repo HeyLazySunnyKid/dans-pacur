@@ -1,0 +1,43 @@
+targets=(
+    "fedora-32"
+)
+pkgname="tmux"
+pkgver="3.1c"
+pkgrel="1"
+pkgdesc="tmux is a terminal multiplexer"
+pkgdesclong=(
+    "tmux is a terminal multiplexer: it enables a number of terminals to be" 
+    "created, accessed, and controlled from a single screen. tmux may be" 
+    "detached from a screen and continue running in the background, then later" 
+    "reattached."
+)
+maintainer="HeyLazySunnyKid"
+arch="all"
+license=("MIT")
+depends=(
+    "ncurses"
+    "libevent"
+)
+makedepends=(
+    "ncurses-devel"
+    "libevent-devel"
+)
+url="https://github.com/tmux/tmux"
+section="utils"
+sources=(
+    "${url}/releases/download/${pkgver}/tmux-${pkgver}.tar.gz"
+)
+hashsums=(
+    "SKIP"
+)
+
+build() {
+    cd tmux-${pkgver}
+    ./configure
+    make
+}
+
+package() {
+    cd ${srcdir}/tmux-${pkgver}
+    make DESTDIR="${pkgdir}" install
+}

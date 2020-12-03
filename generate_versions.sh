@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 # This script
 
+function help(){
+    echo "Usage: generate_version [ update | build ]"
+}
 
 function generate_current_versions(){
     find . -name "PKGBUILD" -print0 | xargs -0 grep 'pkgver=' | \
@@ -10,7 +13,7 @@ function generate_current_versions(){
 # Public funcitons
 function update(){
     mkdir -p tmp
-    generate_current_versions 2>/dev/null >tmp/versions
+    generate_current_versions 2>/dev/null >versions
     while read -r line
     do
         is_updated=$(echo "$line" | jq .event | tr -d \")
@@ -19,7 +22,7 @@ function update(){
 
         if [ "$is_updated" = "updated" ]; then
             pkgold=$(echo "$line" | jq .old_version | tr -d \")
-            sed -i."__${pkgold}" "s/pkgver=.*/pkgver=\"${pkgver}\"/" "${pkg}/PKGBUILD"
+            sed -i.__"${pkgold}" "s/pkgver=.*/pkgver=\"${pkgver}\"/" "${pkg}/PKGBUILD"
             echo "$pkg updated to $pkgver"
         fi
     done < <(nvchecker --logger=json -c source_version.toml)
@@ -27,8 +30,14 @@ function update(){
 
 
 function build(){
-    pacur project build
-    pacur project repo
+    set -e
+    pacur_bin=`which pacur`
+    eval sudo "${pacur_bin}" project build $@
+    eval sudo "${pacur_bin}" project repo
+    set +e
 }
 
+if [ $# = 0 ]; then
+    help
+fi
 "$@"
