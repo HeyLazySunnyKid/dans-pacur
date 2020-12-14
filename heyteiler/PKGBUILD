@@ -1,0 +1,52 @@
+targets=(
+    "fedora-32"
+)
+pkgname="heyteiler"
+pkgver="20201214.061405"
+pkgrel="1"
+pkgdesc="A simple screenshot/screencast tool written in bash"
+pkgdesclong=(
+    "A simple screenshot/screencast tool written in bash"
+)
+maintainer="HeyLazySunnyKid"
+arch="all"
+license=("GPL")
+depends=(
+    "ffmpeg"
+    "maim"
+    "slop"
+    "xclip"
+    "xininfo"
+    "rofi"
+    "diffutils"
+)
+optdepends=(
+    "imgurbash2"
+    "openssh"
+    "copyq"
+    "libnotify"
+    "fb-client"
+    "tesseract"
+)
+conflicts=(
+    "teiler"
+)
+url="https://github.com/HeyLazySunnyKid/heyteiler"
+section="utils"
+sources=(
+    "https://codeload.github.com/HeyLazySunnyKid/heyteiler/zip/master"
+)
+hashsums=(
+    "SKIP"
+)
+
+build() {
+    unzip master
+}
+
+package() {
+    cd "heyteiler-master"
+    make DESTDIR="${pkgdir}/" \
+       PREFIX='/usr' \
+       install
+}
