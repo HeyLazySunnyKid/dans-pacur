@@ -27,13 +27,14 @@ source = "regex"
 url = "https://dl.suckless.org/st/"
 regex = "st-([0-9.]+).tar.gz"
 
-[teiler]
-source = "github"
-github = "carnager/teiler"
+# [teiler]
+# source = "github"
+# github = "carnager/teiler"
 
 [heyteiler]
 source = "github"
 github = "HeyLazySunnyKid/heyteiler"
+use_latest_release = true
 
 [xininfo]
 source = "github"

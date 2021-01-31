@@ -1,8 +1,9 @@
 targets=(
     "fedora-32"
+    "ubuntu-focal"
 )
 pkgname="heyteiler"
-pkgver="20201214.061405"
+pkgver="4.0"
 pkgrel="1"
 pkgdesc="A simple screenshot/screencast tool written in bash"
 pkgdesclong=(
@@ -11,7 +12,7 @@ pkgdesclong=(
 maintainer="HeyLazySunnyKid"
 arch="all"
 license=("GPL")
-depends=(
+depends:fedora=(
     "ffmpeg"
     "maim"
     "slop"
@@ -19,34 +20,54 @@ depends=(
     "xininfo"
     "rofi"
     "diffutils"
+    "curl"
+    "tesseract"
+    "libnotify"
 )
+
+depends:ubuntu=(
+    "ffmpeg"
+    "maim"
+    "slop"
+    "xclip"
+    "xininfo"
+    "rofi"
+    "diffutils"
+    "curl"
+    "tesseract-ocr"
+    "libnotify-bin"
+)
+
 optdepends=(
     "imgurbash2"
     "openssh"
-    "copyq"
     "libnotify"
-    "fb-client"
-    "tesseract"
+    "xdg-utils"
 )
+
 conflicts=(
     "teiler"
 )
+
 url="https://github.com/HeyLazySunnyKid/heyteiler"
 section="utils"
+
 sources=(
-    "https://codeload.github.com/HeyLazySunnyKid/heyteiler/zip/master"
+    "https://codeload.github.com/HeyLazySunnyKid/heyteiler/tar.gz/${pkgver}"
 )
+
 hashsums=(
     "SKIP"
 )
 
 build() {
-    unzip master
 }
 
 package() {
-    cd "heyteiler-master"
+    tar -xf "${pkgver}"
+    cd "heyteiler-${pkgver}"
     make DESTDIR="${pkgdir}/" \
        PREFIX='/usr' \
        install
+    echo "package step closed"
 }
