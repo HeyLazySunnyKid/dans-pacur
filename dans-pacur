@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# This script
 
+# This script
 function help(){
-    echo "Usage: generate_version [ update | build | deploy ]"
+    echo "Usage: dans-pacur [ update | build | deploy ]"
 }
 
 function generate_current_versions(){
