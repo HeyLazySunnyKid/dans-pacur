@@ -2,7 +2,7 @@
 # This script
 
 function help(){
-    echo "Usage: generate_version [ update | build ]"
+    echo "Usage: generate_version [ update | build | deploy ]"
 }
 
 function generate_current_versions(){
@@ -55,6 +55,12 @@ function build(){
     eval sudo "${pacur_bin}" project build $@
     eval sudo "${pacur_bin}" project repo
     set +e
+}
+
+function deploy(){
+    sudo rm -rf /srv/mirror
+    sudo cp -a ./mirror /srv/mirror
+    sudo dnf clean all
 }
 
 if [ $# = 0 ]; then
