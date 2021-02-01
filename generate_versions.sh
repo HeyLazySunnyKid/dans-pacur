@@ -29,8 +29,6 @@ function pkgver2ver(){
 
 # Public funcitons
 function update(){
-
-    mkdir -p tmp
     generate_current_versions 2>/dev/null >versions
     pkgver2ver versions
     echo -n "" > ./ver2pkgver.list
