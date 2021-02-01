@@ -6,19 +6,41 @@ function help(){
 }
 
 function generate_current_versions(){
-    find . -name "PKGBUILD" -print0 | xargs -0 grep 'pkgver=' | \
+    find . -name "PKGBUILD" -print0 | xargs -0 grep '^pkgver=' | \
         sed -E 's%^\./([^/]+)/.*pkgver="([^"]+)"%\1 \2%' | sort
+}
+
+function ver2pkgver(){
+    local pkgver
+    pkgver=$(echo "${2}" | sed -E 's/^v(.*)/\1/')
+    if [[ "${2}" != "${pkgver}" ]]; then
+        echo "$1" >> ./ver2pkgver.list
+        echo "${pkgver}"
+    else
+        echo "${2}"
+    fi
+}
+
+function pkgver2ver(){
+    if [ -f ./ver2pkgver.list ]; then
+        cat ./ver2pkgver.list | xargs -I{} sed -i -E 's/({}) (.*)/\1 v\2/' "$1"
+    fi
 }
 
 # Public funcitons
 function update(){
+
     mkdir -p tmp
     generate_current_versions 2>/dev/null >versions
+    pkgver2ver versions
+    echo -n "" > ./ver2pkgver.list
+
     while read -r line
     do
         is_updated=$(echo "$line" | jq .event | tr -d \")
         pkg=$(echo "$line" | jq .name | tr -d \")
-        pkgver=$(echo "$line" | jq .version | tr -d \")
+        ver=$(echo "$line" | jq .version | tr -d \" )
+        pkgver=$(ver2pkgver "$pkg" "$ver")
 
         if [ "$is_updated" = "updated" ]; then
             pkgold=$(echo "$line" | jq .old_version | tr -d \")

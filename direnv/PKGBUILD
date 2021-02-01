@@ -1,0 +1,44 @@
+targets=(
+    "fedora-32"
+)
+pkgname="direnv"
+pkgver="2.27.0"
+pkgrel="3"
+pkgdesc="A shell extension that manages your environment"
+pkgdesclong=(
+    "A shell extension that manages your environment"
+)
+maintainer="HeyLazySunnyKid"
+arch="all"
+license=("MIT")
+
+url="https://direnv.net"
+section="utils"
+
+makedepends=(
+    "go"
+    "gcc"
+    "make"
+)
+
+sources=(
+    "https://github.com/direnv/direnv/archive/v${pkgver}.tar.gz"
+)
+
+hashsums=(
+    "SKIP"
+)
+
+build() {
+    ver=$(echo "${pkgver}" | tr -d v)
+    cd "direnv-$ver"
+    export GOFLAGS="-buildmode=pie -trimpath -modcacherw"
+    go build -o ${pkgname}
+}
+
+package() {
+    ver=$(echo "${pkgver}" | tr -d v)
+    cd "direnv-$ver"
+    make install PREFIX=/usr DESTDIR="${pkgdir}"
+    install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
+}

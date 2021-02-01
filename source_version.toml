@@ -27,10 +27,6 @@ source = "regex"
 url = "https://dl.suckless.org/st/"
 regex = "st-([0-9.]+).tar.gz"
 
-# [teiler]
-# source = "github"
-# github = "carnager/teiler"
-
 [heyteiler]
 source = "github"
 github = "HeyLazySunnyKid/heyteiler"
@@ -43,4 +39,9 @@ github = "DaveDavenport/xininfo"
 [tmux]
 source = "github"
 github = "tmux/tmux"
+use_latest_release = true
+
+[direnv]
+source = "github"
+github = "direnv/direnv"
 use_latest_release = true
