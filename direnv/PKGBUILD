@@ -30,15 +30,13 @@ hashsums=(
 )
 
 build() {
-    ver=$(echo "${pkgver}" | tr -d v)
-    cd "direnv-$ver"
+    cd "direnv-${pkgver}"
     export GOFLAGS="-buildmode=pie -trimpath -modcacherw"
     go build -o ${pkgname}
 }
 
 package() {
-    ver=$(echo "${pkgver}" | tr -d v)
-    cd "direnv-$ver"
+    cd "direnv-${pkgver}"
     make install PREFIX=/usr DESTDIR="${pkgdir}"
     install -Dm644 LICENSE "${pkgdir}/usr/share/licenses/${pkgname}/LICENSE"
 }
