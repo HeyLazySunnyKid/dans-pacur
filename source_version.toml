@@ -35,6 +35,7 @@ use_latest_release = true
 [xininfo]
 source = "github"
 github = "DaveDavenport/xininfo"
+branch = "master"
 
 [tmux]
 source = "github"
@@ -45,3 +46,13 @@ use_latest_release = true
 source = "github"
 github = "direnv/direnv"
 use_latest_release = true
+
+[xkblayout-state]
+source = "github"
+github = "nonpop/xkblayout-state"
+branch = "master"
+
+[xmapnotify]
+source = "github"
+github = "HeyLazySunnyKid/xmapnotify"
+branch = "main"

@@ -1,0 +1,45 @@
+targets=(
+    "fedora-32"
+)
+pkgname="xmapnotify"
+pkgver="20210218.163126"
+pkgbranch="main"
+pkgrel="3"
+pkgdesc="xkblayout-state is a small command-line program to get/set the current XKB keyboard layout."
+pkgdesclong=(
+    "xkblayout-state is a small command-line program to get/set the current XKB keyboard layout."
+)
+maintainer="HeyLazySunnyKid"
+arch="all"
+license=("MIT")
+
+url="https://github.com/HeyLazySunnyKid/xmapnotify"
+section="utils"
+
+makedepends=(
+    "make"
+    "gcc"
+    "libX11-devel"
+)
+
+sources=(
+    "https://codeload.github.com/HeyLazySunnyKid/xmapnotify/zip/${pkgbranch}"
+)
+
+hashsums=(
+    "SKIP"
+)
+
+build() {
+    ls -al
+    unzip -q "${pkgbranch}"
+    cd "${pkgname}-${pkgbranch}"
+    make
+}
+
+package() {
+    cd "${srcdir}/${pkgname}-${pkgbranch}"
+    make DESTDIR="${pkgdir}/" \
+       PREFIX='/usr' \
+       install
+}

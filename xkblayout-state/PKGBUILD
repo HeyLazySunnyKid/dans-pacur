@@ -1,0 +1,43 @@
+targets=(
+    "fedora-32"
+)
+pkgname="xkblayout-state"
+pkgver="20200909.082234"
+pkgbranch="master"
+pkgrel="3"
+pkgdesc="xkblayout-state is a small command-line program to get/set the current XKB keyboard layout."
+pkgdesclong=(
+    "xkblayout-state is a small command-line program to get/set the current XKB keyboard layout."
+)
+maintainer="HeyLazySunnyKid"
+arch="all"
+license=("MIT")
+
+url="https://github.com/nonpop/xkblayout-state"
+section="utils"
+
+makedepends=(
+    "unzip"
+    "gcc"
+    "make"
+    "libX11-devel"
+)
+
+sources=(
+    "https://codeload.github.com/nonpop/xkblayout-state/zip/master"
+)
+
+hashsums=(
+    "SKIP"
+)
+
+build() {
+    unzip -q "${pkgbranch}"
+    cd "xkblayout-state-${pkgbranch}"
+    make all
+}
+
+package() {
+    cd "${srcdir}/xkblayout-state-${pkgbranch}"
+    install -Dm755 "xkblayout-state" "${pkgdir}/usr/bin/xkblayout-state"
+}
