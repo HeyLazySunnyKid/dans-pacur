@@ -56,3 +56,8 @@ branch = "master"
 source = "github"
 github = "HeyLazySunnyKid/xmapnotify"
 branch = "main"
+
+[alacritty]
+source = "github"
+github = "alacritty/alacritty"
+use_latest_release = true
